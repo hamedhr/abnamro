@@ -1,0 +1,10 @@
+package com.abnamro.recipe.repository;
+
+import com.abnamro.recipe.model.Recipe;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface RecipeRepository extends JpaRepository<Recipe, Long>, QuerydslPredicateExecutor<Recipe> {
+}

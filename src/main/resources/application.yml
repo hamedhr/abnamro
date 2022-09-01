@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: abn-amro
+  h2:
+    console.enabled: true
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:password}
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+springdoc:
+  swagger-ui:
+    path: /docs
+    disable-swagger-default-url: true
+server:
+  tomcat:
+    accesslog:
+      enabled: false
+    threads:
+      min-spare: 128
+      max: 128
+  error:
+    whitelabel:
+      enabled: false
+    include-stacktrace: on_param
+  compression:
+    enabled: true
+    min-response-size: 1024
+    mime-types: application/json
+  port: ${SERVER_PORT:8080}
+management:
+  server:
+    port: ${MANAGEMENT_SERVER_PORT:8585}
+  health:
+    readinessState:
+      enabled: true
+    livenessstate:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: shutdown, health
+    enabled-by-default: false
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      probes:
+        enabled: true
+      enabled: true
+      show-details: always
